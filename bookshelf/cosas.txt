@@ -1,0 +1,28 @@
+agregar en el modelo, las modificaciones de las bases de datos, relaciones, id_user
+
+
+{
+ "nombre":"userprueba",
+ "apellido":"apeprueba",
+ "correo":"correoprueba",
+ "fecha_nacimiento":"1990-03-17",
+ "sucursal_preferencia":"1",
+ "contrasena":"123456"
+}
+
+ver lo de bcrypt, para hasheo
+// Función para verificar una contraseña
+function verificarContrasena(contrasena, hash, salt) {
+    const hashVerificar = crypto.pbkdf2Sync(contrasena, salt, 10000, 64, 'sha512').toString('hex');
+    return hash === hashVerificar;
+}
+
+// Ejemplo de uso
+const contrasenaUsuario = 'contrasena123';
+const { salt, hash } = generarHashContrasena(contrasenaUsuario);
+
+// Verificación de la contraseña
+const esValida = verificarContrasena(contrasenaUsuario, hash, salt);
+console.log('¿La contraseña es válida?', esValida);
+
+
